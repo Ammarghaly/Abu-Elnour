@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أبو النور - السلة | راجع طلباتك</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="راجع طلباتك في سلة مطعم أبو النور وقم بإتمام طلبك بكل سهولة وسرعة." />
+    <!-- Robins and Theme Color -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#d4af37" />
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="icon-192.png?v=4.0" />
+    <link rel="icon" type="image/png" href="icon-192.png?v=4.0" />
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registered', reg))
+            .catch(err => console.log('Service Worker registration failed', err));
+        });
+      }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="icon-192.png?v=4.0" />
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" href="styles.css?v=4.0" as="style" />
+    <link rel="stylesheet" href="styles.css?v=4.0" />
+    
+    <link rel="canonical" href="https://menu-cafe-three.vercel.app/cart.html" />
+    
+    <script type="module" src="app.js"></script>
+  </head>
+  <body class="app-body">
+    <div class="phone-frame">
+      <header class="app-header cart-header">
+        <button class="back-btn" onclick="window.location.href = 'index.html'">
+          ‹
+        </button>
+        <div class="logo-group">
+          <img src="icon-192.png?v=4.0" alt="Abu Al-Nour Logo" class="header-logo" style="width: 50px; height: 50px;" />
+          <div class="brand-text">
+            <h1 class="brand-title">سلة الطلبات</h1>
+            <p class="brand-subtitle">راجع طلباتك قبل الدفع</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-main cart-main">
+        <section id="cartItems" class="cart-items">
+          <!-- عناصر السلة من JavaScript -->
+        </section>
+
+        <footer class="cart-footer">
+          <div class="cart-summary">
+            <span>الإجمالي</span>
+            <span id="cartTotal">0.00 ج.م</span>
+          </div>
+          <button class="primary-btn" id="checkoutBtn">إتمام الطلب</button>
+          <button class="secondary-btn" id="clearCartBtn">تفريغ السلة</button>
+        </footer>
+      </main>
+    </div>
+
+    <!-- نافذة الفاتورة (Receipt Style) -->
+    <div class="invoice-backdrop hidden" id="invoiceBackdrop">
+      <div class="invoice-modal">
+        <header class="invoice-header">
+          <div class="receipt-icon">🍟</div>
+          <h2 class="invoice-title">فاتورة أبو النور</h2>
+        </header>
+
+        <div class="invoice-body">
+          <div id="invoiceSummary" class="invoice-summary">
+            <!-- تفاصيل الطلب من JavaScript -->
+          </div>
+
+          <div class="invoice-field">
+            <label>اسم العميل</label>
+            <input type="text" id="customerName" class="invoice-input" placeholder="اكتب اسمك هنا..." />
+          </div>
+
+          <div class="invoice-field">
+            <label>العنوان بالتفصيل</label>
+            <input type="text" id="customerAddress" class="invoice-input" placeholder="الحي، الشارع، رقم المنزل..." />
+          </div>
+
+          <div class="invoice-field">
+            <label>ملاحظات إضافية (اختياري)</label>
+            <textarea id="customerNotes" class="invoice-input" placeholder="مثال: بدون بصل، طابق تاني..." rows="1"></textarea>
+          </div>
+        </div>
+
+        <div class="invoice-actions">
+          <button class="whatsapp-send-btn" id="confirmSendBtn">
+            <span>إرسال الطلب عبر واتساب</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+          <button class="invoice-cancel-btn" id="closeInvoiceBtn">
+            إلغاء والعودة للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
