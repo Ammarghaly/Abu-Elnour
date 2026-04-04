@@ -1,8 +1,8 @@
-import { db, ref, onValue, query, orderByChild } from "./firebase.js";
+import { db, ref, onValue } from "./firebase.js";
 
 const CART_STORAGE_KEY = "abu_al_nour_cart";
 const PENDING_ORDER_KEY = "abu_al_nour_pending_order";
-const WHATSAPP_NUMBER = "201120660784"; 
+const WHATSAPP_NUMBER = "201065302088"; 
 
 // index.html elements
 const productsGrid = document.getElementById('productsGrid');

@@ -2,7 +2,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbyWcvE5oAnepW-1Rr9b-Kyl
 const DATA_SOURCE_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSPx3sBqlsb5CF94sqq9fOYBiqPTfOu7XF5TFAwE3CrlzAA59V2Q3xsccp2L13PEZmht9vHP_32CICI/pub?output=csv";
 const CART_STORAGE_KEY = "abu_al_nour_cart";
 const PENDING_ORDER_KEY = "abu_al_nour_pending_order";
-const WHATSAPP_NUMBER = "201120660784"; 
+const WHATSAPP_NUMBER = "201065302088"; 
 const CURRENCY_LABEL = "ج.م";
 
 let PRODUCTS = [];
