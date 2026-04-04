@@ -2,30 +2,10 @@ const API_URL = "https://script.google.com/macros/s/AKfycbyWcvE5oAnepW-1Rr9b-Kyl
 const DATA_SOURCE_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSPx3sBqlsb5CF94sqq9fOYBiqPTfOu7XF5TFAwE3CrlzAA59V2Q3xsccp2L13PEZmht9vHP_32CICI/pub?output=csv";
 const CART_STORAGE_KEY = "abu_al_nour_cart";
 const PENDING_ORDER_KEY = "abu_al_nour_pending_order";
-const WHATSAPP_NUMBER = "201120660784"; 
+const WHATSAPP_NUMBER = "201065302088"; 
 const CURRENCY_LABEL = "ج.م";
 
 let PRODUCTS = [];
-
-/**
- * دالة بسيطة لتحويل نصوص الـ CSV إلى مصفوفة كائنات
- */
-function parseCSV(csvText) {
-  const lines = csvText.split(/\r?\n/).filter(line => line.trim());
-  if (lines.length < 2) return [];
-  
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-  
-  return lines.slice(1).map(line => {
-    // معالجة بسيطة للفواصل (لا تدعم الفواصل داخل الاقتباسات بشكل معقد ولكن كافية لهيكلية المنيو)
-    const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
-    const item = {};
-    headers.forEach((h, i) => {
-      item[h] = values[i] || "";
-    });
-    return item;
-  });
-}
 
 function normalizeCategoryKey(value) {
   return String(value || "")
