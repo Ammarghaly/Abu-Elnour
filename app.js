@@ -401,4 +401,42 @@ if (confirmSendBtn) {
 }
 
 // ---------------- INITIALIZE ----------------
+// ---------------- PWA INSTALL LOGIC ----------------
+let deferredPrompt;
+const installPopup = document.getElementById('installPopup');
+const installBtn = document.getElementById('installBtn');
+const closeInstall = document.getElementById('closeInstall');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show the install popup
+  if (installPopup) {
+    installPopup.classList.remove('hidden');
+  }
+});
+
+if (installBtn) {
+  installBtn.onclick = async () => {
+    if (!deferredPrompt) return;
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response to the install prompt: ${outcome}`);
+    // We've used the prompt, and can't use it again, throw it away
+    deferredPrompt = null;
+    // Hide the popup
+    installPopup.classList.add('hidden');
+  };
+}
+
+if (closeInstall) {
+  closeInstall.onclick = () => {
+    installPopup.classList.add('hidden');
+  };
+}
+
 init();
