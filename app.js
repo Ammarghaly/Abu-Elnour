@@ -27,7 +27,7 @@ let activeCategory = 'all';
 
 // Real-time Fetch from Firebase Realtime Database
 function init() {
-  const productsRef = ref(db, "products");
+  const productsRef = ref(db, "Abu_Elnour/products");
   
   onValue(productsRef, (snapshot) => {
     const data = snapshot.val();
@@ -54,7 +54,7 @@ function init() {
     updateCartBadge();
   }, (error) => {
     console.error("Realtime DB error:", error);
-    if (loading) loading.innerHTML = "❌ فشل تحميل المنيو. يرجى التحقق من القواعد (Rules).";
+    if (loading) loading.innerHTML = "❌ فشل تحميل المنيو. يرجى التحقق من الشبكة (Rules).";
   });
 }
 
